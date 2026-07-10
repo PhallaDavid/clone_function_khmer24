@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import { Plus_Jakarta_Sans, Geist_Mono } from "next/font/google";
+import "../styles/globals.css";
+import { ThemeProvider } from "@/components/theme-provider";
+import NextTopLoader from "nextjs-toploader";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const plusJakartaSans = Plus_Jakarta_Sans({
+  variable: "--font-plus-jakarta",
   subsets: ["latin"],
 });
 
@@ -25,9 +27,24 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${plusJakartaSans.variable} ${geistMono.variable} h-full antialiased`}
+      style={{
+        "--font-body": "var(--font-plus-jakarta)",
+        "--font-display": "var(--font-plus-jakarta)",
+        "--font-sans": "var(--font-plus-jakarta)",
+      } as React.CSSProperties}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col bg-primary text-primary transition-colors duration-200">
+        <ThemeProvider>
+          <NextTopLoader color="var(--color-brand-600)" showSpinner={false} shadow="0 0 10px var(--color-brand-600),0 0 5px var(--color-brand-600)" />
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
+
+
+
+
+
