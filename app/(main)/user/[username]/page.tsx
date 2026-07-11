@@ -7,46 +7,14 @@ import { Breadcrumbs } from "@/components/base/breadcrumbs/breadcrumbs";
 import { products, translations, locationNames } from "@/utils/mock-data";
 import { cx } from "@/utils/cx";
 
+import en from "@/locales/en.json";
+import kh from "@/locales/kh.json";
+import zh from "@/locales/zh.json";
+
 const sellerTranslations: Record<string, Record<string, string>> = {
-  en: {
-    memberSince: "Member since: ",
-    verifiedSeller: "Verified Seller",
-    callSeller: "Call Seller",
-    shareProfile: "Share Profile",
-    activeListings: "Active Ads",
-    noListings: "No active listings found for this seller.",
-    copiedMessage: "Profile link copied to clipboard!",
-    ratingLabel: "Seller Rating",
-    notFoundTitle: "Seller Showroom Not Found",
-    notFoundDesc: "The seller profile you are looking for does not exist, or has been deactivated.",
-    backToMarket: "Back to Marketplace"
-  },
-  kh: {
-    memberSince: "សមាជិកតាំងពី៖ ",
-    verifiedSeller: "អ្នកលក់ដែលបានបញ្ជាក់អត្តសញ្ញាណ",
-    callSeller: "ទូរស័ព្ទទៅអ្នកលក់",
-    shareProfile: "ចែករំលែកប្រវត្តិរូប",
-    activeListings: "ការផ្សព្វផ្សាយលក់",
-    noListings: "មិនមានការផ្សព្វផ្សាយរបស់អ្នកលក់នេះទេ។",
-    copiedMessage: "តំណភ្ជាប់ត្រូវបានចម្លងទុក!",
-    ratingLabel: "ការវាយតម្លៃរបស់អ្នកលក់",
-    notFoundTitle: "មិនរកឃើញទំព័រអ្នកលក់ទេ",
-    notFoundDesc: "ប្រវត្តិរូបអ្នកលក់ដែលអ្នកកំពុងស្វែងរកមិនមាន ឬត្រូវបានបិទដំណើរការ។",
-    backToMarket: "ត្រឡប់ទៅទំព័រដើមវិញ"
-  },
-  cn: {
-    memberSince: "注册会员年份：",
-    verifiedSeller: "实名认证商家",
-    callSeller: "拨打电话找商家",
-    shareProfile: "分享商家主页",
-    activeListings: "在售宝贝广告",
-    noListings: "该商家暂无发布中的宝贝宝贝。",
-    copiedMessage: "商家主页链接已复制到剪贴板！",
-    ratingLabel: "商家信誉评分",
-    notFoundTitle: "商家展示厅未找到",
-    notFoundDesc: "您所寻找的商家可能未注销或已下线。",
-    backToMarket: "返回商城主页"
-  }
+  en: en.seller,
+  kh: kh.seller,
+  cn: zh.seller,
 };
 
 const cleanString = (str: string) => {

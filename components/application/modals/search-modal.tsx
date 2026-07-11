@@ -11,46 +11,14 @@ interface SearchModalProps {
   onOpenChange: (open: boolean) => void;
 }
 
+import en from "@/locales/en.json";
+import kh from "@/locales/kh.json";
+import zh from "@/locales/zh.json";
+
 const searchTranslations: Record<string, Record<string, string>> = {
-  en: {
-    placeholder: "Search categories, products, or locations...",
-    recentSearches: "Recent Searches",
-    popularCategories: "Popular Categories",
-    categories: "Categories",
-    products: "Products",
-    locations: "Locations",
-    noResults: "No results found for",
-    tryDifferent: "Try adjusting your search terms to discover more items.",
-    escToClose: "ESC to close",
-    select: "Select",
-    negotiable: "Negotiable"
-  },
-  kh: {
-    placeholder: "ស្វែងរកចំណាត់ថ្នាក់ក្រុម ទំនិញ ឬទីតាំង...",
-    recentSearches: "ការស្វែងរកថ្មីៗ",
-    popularCategories: "ចំណាត់ថ្នាក់ក្រុមពេញនិយម",
-    categories: "ចំណាត់ថ្នាក់ក្រុម",
-    products: "ទំនិញ",
-    locations: "ទីតាំង",
-    noResults: "រកមិនឃើញលទ្ធផលសម្រាប់",
-    tryDifferent: "សូមព្យាយាមផ្លាស់ប្តូរពាក្យគន្លឹះស្វែងរករបស់អ្នកដើម្បីស្វែងរកទំនិញបន្ថែម។",
-    escToClose: "ESC ដើម្បីបិទ",
-    select: "ជ្រើសរើស",
-    negotiable: "ចរចាបាន"
-  },
-  cn: {
-    placeholder: "搜索类别、产品或位置...",
-    recentSearches: "最近搜索",
-    popularCategories: "热门类别",
-    categories: "类别",
-    products: "产品",
-    locations: "位置",
-    noResults: "没有找到对应结果：",
-    tryDifferent: "请尝试调整您的搜索词以发现更多商品。",
-    escToClose: "ESC 关闭",
-    select: "选择",
-    negotiable: "可议价"
-  }
+  en: en.search,
+  kh: kh.search,
+  cn: zh.search,
 };
 
 const searchIcon = (

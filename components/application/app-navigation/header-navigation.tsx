@@ -1,8 +1,8 @@
 "use client";
 
-import { type FC, type ReactNode } from "react";
+import { type FC, type ReactNode, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { Bell01, LifeBuoy01, SearchLg, Settings01 } from "@untitledui/icons";
+import { Bell01, LifeBuoy01, SearchLg, Settings01, User01, ShoppingBag01, LogOut01 } from "@untitledui/icons";
 import { TabList, Tabs } from "@/components/application/tabs/tabs";
 import { BadgeWithDot } from "@/components/base/badges/badges";
 import { DropdownAccountButton } from "@/components/base/dropdown/dropdown-account-button";
@@ -16,6 +16,7 @@ import { RadioButtonBase } from "@/components/base/radio-buttons/radio-buttons";
 import { useBreakpoint } from "@/hooks/use-breakpoint";
 import { cx } from "@/utils/cx";
 import { useTheme } from "@/components/theme-provider";
+import { NotificationDropdownContent } from "@/components/application/modals/notification-modal";
 import { MobileNavigationHeader } from "./base-components/mobile-header";
 import { NavAccountCard } from "./base-components/nav-account-card";
 import { NavButton } from "./base-components/nav-button";
@@ -93,6 +94,7 @@ const DefaultActions = ({ activeUrl }: { activeUrl?: string }) => {
     const { theme, toggleTheme, setLoginOpen, setRegisterOpen, setSearchOpen } = useTheme();
     const pathname = usePathname();
     const router = useRouter();
+    const [isLoggedIn, setIsLoggedIn] = useState(true);
 
     const segments = pathname.split("/");
     const currentLocale = ["en", "kh", "cn"].includes(segments[1]) ? segments[1] : "en";
@@ -116,7 +118,18 @@ const DefaultActions = ({ activeUrl }: { activeUrl?: string }) => {
             {/* Language Selection Dropdown */}
             <div className="xl:mr-3 mr-1.5 shrink-0">
                 <Dropdown.Root>
-                    <AriaButton className="inline-flex items-center gap-1 px-2 py-1.5 rounded-lg border border-secondary bg-primary hover:bg-primary_hover text-xs font-semibold text-secondary transition-all outline-hidden cursor-pointer shadow-xs">
+                    <AriaButton className="inline-flex items-center gap-1.5 px-2 py-1.5 rounded-lg border border-secondary bg-primary hover:bg-primary_hover text-xs font-semibold text-secondary transition-all outline-hidden cursor-pointer shadow-xs">
+                        <img 
+                            src={
+                                currentLocale === "kh" 
+                                    ? "https://flagcdn.com/kh.svg" 
+                                    : currentLocale === "cn" 
+                                        ? "https://flagcdn.com/cn.svg" 
+                                        : "https://flagcdn.com/gb.svg"
+                            } 
+                            alt={currentLocale} 
+                            className="w-4 h-3 object-cover rounded-xs border border-secondary/20"
+                        />
                         <span>{currentLocale === "kh" ? "ខ្មែរ (KH)" : currentLocale === "cn" ? "中文 (ZH)" : "English (EN)"}</span>
                         <svg className="size-3 text-secondary/60 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
@@ -124,9 +137,9 @@ const DefaultActions = ({ activeUrl }: { activeUrl?: string }) => {
                     </AriaButton>
                     <Dropdown.Popover placement="bottom end" className="w-36">
                         <Dropdown.Menu selectionMode="single" selectedKeys={[currentLocale]} onAction={(key) => changeLocale(key as string)}>
-                            <Dropdown.Item id="en" label="English" selectionIndicator="checkmark" />
-                            <Dropdown.Item id="kh" label="ភាសាខ្មែរ" selectionIndicator="checkmark" />
-                            <Dropdown.Item id="cn" label="中文 (简体)" selectionIndicator="checkmark" />
+                            <Dropdown.Item id="en" label="English" selectionIndicator="checkmark" avatarUrl="https://flagcdn.com/gb.svg" />
+                            <Dropdown.Item id="kh" label="ភាសាខ្មែរ" selectionIndicator="checkmark" avatarUrl="https://flagcdn.com/kh.svg" />
+                            <Dropdown.Item id="cn" label="中文 (简体)" selectionIndicator="checkmark" avatarUrl="https://flagcdn.com/cn.svg" />
                         </Dropdown.Menu>
                     </Dropdown.Popover>
                 </Dropdown.Root>
@@ -152,8 +165,30 @@ const DefaultActions = ({ activeUrl }: { activeUrl?: string }) => {
                     }}
                     tooltipPlacement="bottom"
                 />
+                <AriaDialogTrigger>
+                    <AriaButton
+                        className={(state) => cx(
+                            "group/item relative flex cursor-pointer items-center justify-center gap-1 rounded-md bg-primary outline-focus-ring transition duration-100 ease-linear select-none hover:bg-primary_hover focus-visible:z-10 focus-visible:outline-2 focus-visible:outline-offset-2 size-9 border-0 p-0",
+                            state.isOpen && "bg-secondary"
+                        )}
+                        aria-label="Notifications"
+                    >
+                        <Bell01
+                            aria-hidden="true"
+                            className="size-5 shrink-0 text-fg-quaternary transition-inherit-all group-hover/item:text-fg-quaternary_hover"
+                        />
+                    </AriaButton>
+                    <AriaPopover placement="bottom end" className="w-80 sm:w-96 bg-primary border border-secondary shadow-lg rounded-xl overflow-hidden mt-1.5 z-50">
+                        <AriaDialog className="outline-hidden">
+                            {({ close }) => (
+                                <NotificationDropdownContent onClose={close} />
+                            )}
+                        </AriaDialog>
+                    </AriaPopover>
+                </AriaDialogTrigger>
                 <NavButton
                     href={`/${currentLocale}/chat`}
+                    current={activeUrl === "/chat" || pathname.endsWith("/chat")}
                     icon={(props) => (
                         <svg {...props} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.3">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M8.625 9.75a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 01.778-.332 48.294 48.294 0 005.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" />
@@ -164,7 +199,7 @@ const DefaultActions = ({ activeUrl }: { activeUrl?: string }) => {
                 />
             </div>
 
-            <div className="flex items-center xl:gap-2 gap-1">
+            <div className="flex items-center xl:gap-2 gap-1.5">
                 <Button
                     color="primary"
                     size="sm"
@@ -181,54 +216,61 @@ const DefaultActions = ({ activeUrl }: { activeUrl?: string }) => {
                 >
                     {currentLocale === "kh" ? "លក់ទំនិញ" : currentLocale === "cn" ? "发布商品" : "Sell"}
                 </Button>
-                <Button
-                    color="secondary"
-                    size="sm"
-                    onClick={(e) => {
-                        e.preventDefault();
-                        setLoginOpen(true);
-                    }}
-                >
-                    Log in
-                </Button>
-                <Button
-                    color="primary"
-                    size="sm"
-                    className="bg-transparent border border-secondary text-primary hover:bg-primary_hover/30"
-                    onClick={(e) => {
-                        e.preventDefault();
-                        setRegisterOpen(true);
-                    }}
-                >
-                    Register
-                </Button>
-                {/* Simulated profile dropdown button */}
-                <div className="ml-1 shrink-0">
-                    <Dropdown.Root>
-                        <AriaButton
-                            className="size-8 rounded-full border border-secondary overflow-hidden hover:opacity-85 transition-opacity cursor-pointer shrink-0 focus:ring-1 focus:ring-brand-solid outline-hidden"
-                            aria-label="My Profile"
+
+                {!isLoggedIn ? (
+                    <>
+                        <Button
+                            color="secondary"
+                            size="sm"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                setLoginOpen(true);
+                            }}
                         >
-                            <img
-                                className="w-full h-full object-cover"
-                                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop"
-                                alt="Sophia Profile View"
-                            />
-                        </AriaButton>
-                        <Dropdown.Popover placement="bottom end" className="w-48">
-                            <Dropdown.Menu onAction={(key) => {
-                                if (key === "profile") router.push(`/${currentLocale}/profile`);
-                                if (key === "listings") router.push(`/${currentLocale}/profile?tab=listings`);
-                                if (key === "settings") router.push(`/${currentLocale}/profile?tab=settings`);
-                            }}>
-                                <Dropdown.Item id="profile" label={currentLocale === "kh" ? "ប្រវត្តិរូបផ្ទាល់ខ្លួន" : currentLocale === "cn" ? "个人资料" : "My Profile"} />
-                                <Dropdown.Item id="listings" label={currentLocale === "kh" ? "ទំនិញលក់របស់ខ្ញុំ" : currentLocale === "cn" ? "我发布的商品" : "My Listings"} />
-                                <Dropdown.Item id="settings" label={currentLocale === "kh" ? "ការកំណត់គណនី" : currentLocale === "cn" ? "账户隐私设置" : "Account Settings"} />
-                                <Dropdown.Item id="logout" label={currentLocale === "kh" ? "ចាកចេញ" : currentLocale === "cn" ? "退出登录" : "Log out"} />
-                            </Dropdown.Menu>
-                        </Dropdown.Popover>
-                    </Dropdown.Root>
-                </div>
+                            Log in
+                        </Button>
+                        <Button
+                            color="primary"
+                            size="sm"
+                            className="bg-transparent border border-secondary text-primary hover:bg-primary_hover/30"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                setRegisterOpen(true);
+                            }}
+                        >
+                            Register
+                        </Button>
+                    </>
+                ) : (
+                    /* Simulated profile dropdown button */
+                    <div className="ml-1 shrink-0">
+                        <Dropdown.Root>
+                            <AriaButton
+                                className="size-8 rounded-full border border-secondary overflow-hidden hover:opacity-85 transition-opacity cursor-pointer shrink-0 focus:ring-1 focus:ring-brand-solid outline-hidden"
+                                aria-label="My Profile"
+                            >
+                                <img
+                                    className="w-full h-full object-cover"
+                                    src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop"
+                                    alt="Sophia Profile View"
+                                />
+                            </AriaButton>
+                            <Dropdown.Popover placement="bottom end" className="w-48">
+                                <Dropdown.Menu onAction={(key) => {
+                                    if (key === "profile") router.push(`/${currentLocale}/profile`);
+                                    if (key === "listings") router.push(`/${currentLocale}/profile?tab=listings`);
+                                    if (key === "settings") router.push(`/${currentLocale}/profile?tab=settings`);
+                                    if (key === "logout") setIsLoggedIn(false);
+                                }}>
+                                    <Dropdown.Item id="profile" label={currentLocale === "kh" ? "ប្រវត្តិរូបផ្ទាល់ខ្លួន" : currentLocale === "cn" ? "个人资料" : "My Profile"} icon={User01} />
+                                    <Dropdown.Item id="listings" label={currentLocale === "kh" ? "ទំនិញលក់របស់ខ្ញុំ" : currentLocale === "cn" ? "我发布的商品" : "My Listings"} icon={ShoppingBag01} />
+                                    <Dropdown.Item id="settings" label={currentLocale === "kh" ? "ការកំណត់គណនី" : currentLocale === "cn" ? "账户隐私设置" : "Account Settings"} icon={Settings01} />
+                                    <Dropdown.Item id="logout" label={currentLocale === "kh" ? "ចាកចេញ" : currentLocale === "cn" ? "退出登录" : "Log out"} icon={LogOut01} />
+                                </Dropdown.Menu>
+                            </Dropdown.Popover>
+                        </Dropdown.Root>
+                    </div>
+                )}
             </div>
         </>
     );
@@ -329,17 +371,7 @@ export const HeaderNavigationBase = ({
                             </a>
                         </div>
 
-                        <nav>
-                            <ul className="flex items-center gap-0.5">
-                                {items.map((item) => (
-                                    <li key={item.label}>
-                                        <NavButton current={isActive(item)} href={item.href}>
-                                            {item.label}
-                                        </NavButton>
-                                    </li>
-                                ))}
-                            </ul>
-                        </nav>
+
 
                         <div className={cx("flex items-center gap-3", centered ? "flex-1 justify-end" : "ml-auto")}>
                             {hasCustomActions ? actions : <DefaultActions activeUrl={activeUrl} />}

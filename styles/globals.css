@@ -67,3 +67,12 @@ input[type="search"]::-webkit-search-cancel-button {
 .recharts-surface path {
     outline: none;
 }
+
+.font-khmer,
+.font-khmer body,
+.font-khmer button,
+.font-khmer input,
+.font-khmer textarea,
+.font-khmer select {
+    font-family: var(--font-hanuman), var(--font-body), sans-serif !important;
+}

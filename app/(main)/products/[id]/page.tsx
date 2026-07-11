@@ -7,82 +7,14 @@ import { Breadcrumbs } from "@/components/base/breadcrumbs/breadcrumbs";
 import { products, productTitles, locationNames, conditions, timeTranslations } from "@/utils/mock-data";
 import { cx } from "@/utils/cx";
 
+import en from "@/locales/en.json";
+import kh from "@/locales/kh.json";
+import zh from "@/locales/zh.json";
+
 const detailTranslations: Record<string, Record<string, string>> = {
-  en: {
-    backToHome: "Back to Home",
-    productDetails: "Product Details",
-    condition: "Condition",
-    location: "Location",
-    posted: "Posted",
-    category: "Category",
-    negotiable: "Negotiable",
-    fixedPrice: "Fixed Price",
-    viewAd: "Views",
-    verifiedSeller: "Verified Seller",
-    sellerStatus: "Active online",
-    showPhone: "Show Phone Number",
-    messageSellerPlaceholder: "Write a message to the seller...",
-    sendMessage: "Send Message",
-    messageSuccess: "Message sent successfully!",
-    relatedProducts: "Related Featured Ads",
-    noRelated: "No related ads found.",
-    specifications: "Specifications",
-    brand: "Brand",
-    model: "Model",
-    year: "Year",
-    urgent: "Urgent",
-    contactSeller: "Contact Seller"
-  },
-  kh: {
-    backToHome: "ត្រឡប់ទៅទំព័រដើម",
-    productDetails: "ព័ត៌មានលម្អិតអំពីទំនិញ",
-    condition: "លក្ខខណ្ឌទំនិញ",
-    location: "ទីតាំង",
-    posted: "ថ្ងៃផ្សព្វផ្សាយ",
-    category: "ប្រភេទ",
-    negotiable: "ចរចាបាន",
-    fixedPrice: "តម្លៃថេរ",
-    viewAd: "ចំនួនមើល",
-    verifiedSeller: "អ្នកលក់ដែលបានបញ្ជាក់",
-    sellerStatus: "កំពុងដំណើរការ",
-    showPhone: "បង្ហាញលេខទូរស័ព្ទ",
-    messageSellerPlaceholder: "សរសេរសារទៅកាន់អ្នកលក់...",
-    sendMessage: "ផ្ញើសារ",
-    messageSuccess: "សារត្រូវបានផ្ញើដោយជោគជ័យ!",
-    relatedProducts: "ការផ្សព្វផ្សាយពិសេសស្រដៀងគ្នា",
-    noRelated: "រកមិនឃើញការផ្សព្វផ្សាយស្រដៀងគ្នាឡើយ។",
-    specifications: "ការបញ្ជាក់លម្អិត",
-    brand: "ម៉ាក",
-    model: "ម៉ូដែល",
-    year: "ឆ្នាំ",
-    urgent: "បន្ទាន់",
-    contactSeller: "ទាក់ទងអ្នកលក់"
-  },
-  cn: {
-    backToHome: "返回首页",
-    productDetails: "产品详细信息",
-    condition: "新旧程度",
-    location: "交易位置",
-    posted: "发布时间",
-    category: "产品类别",
-    negotiable: "可议价",
-    fixedPrice: "一口价",
-    viewAd: "浏览量",
-    verifiedSeller: "认证卖家",
-    sellerStatus: "在线活跃",
-    showPhone: "展示电话号码",
-    messageSellerPlaceholder: "起草一份给卖家的消息...",
-    sendMessage: "发送消息",
-    messageSuccess: "消息发送成功！",
-    relatedProducts: "相关推荐广告",
-    noRelated: "未找到相关广告。",
-    specifications: "规格明细",
-    brand: "品牌",
-    model: "型号",
-    year: "出厂年份",
-    urgent: "加急",
-    contactSeller: "联系卖家"
-  }
+  en: en.detail,
+  kh: kh.detail,
+  cn: zh.detail,
 };
 
 export default function ProductDetailPage() {

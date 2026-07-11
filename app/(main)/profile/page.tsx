@@ -6,82 +6,14 @@ import { Breadcrumbs } from "@/components/base/breadcrumbs/breadcrumbs";
 import { locationNames } from "@/utils/mock-data";
 import { cx } from "@/utils/cx";
 
+import en from "@/locales/en.json";
+import kh from "@/locales/kh.json";
+import zh from "@/locales/zh.json";
+
 const profileTranslations: Record<string, Record<string, string>> = {
-  en: {
-    title: "My Profile Settings",
-    subtitle: "Manage your personal account settings, check your listings history, and configure options.",
-    tabActive: "My Listings",
-    tabSaved: "Saved Ads",
-    tabSettings: "Privacy Settings",
-    personalInfo: "Personal Details",
-    displayName: "Display Name",
-    email: "Email Address",
-    phone: "Contact Phone",
-    location: "Default City",
-    bio: "Short Bio",
-    savesBtn: "Save Profile Changes",
-    activeSince: "Member Since: June 2024",
-    totalAds: "Total Listings: 2 Ads",
-    saving: "Saving changes...",
-    savedSuccess: "Profile changes saved successfully!",
-    avatarChange: "Change photo",
-    adActive: "Active",
-    adPending: "Pending Review",
-    // Mock Listings
-    listing1: "iPad Pro 11-inch (M2 Chip, 128GB)",
-    listing2: "Mechanical Keyboard Keychron K2",
-    savedListing1: "iPhone 15 Pro Max - 256GB"
-  },
-  kh: {
-    title: "លម្អិតគណនីរបស់ខ្ញុំ",
-    subtitle: "គ្រប់គ្រងការកំណត់គណនីផ្ទាល់ខ្លួន ពិនិត្យប្រវត្តិទំនិញលក់ និងកំណត់ជម្រើសផ្សេងៗ។",
-    tabActive: "ទំនិញលក់របស់ខ្ញុំ",
-    tabSaved: "ទំនិញបានរក្សាទុក",
-    tabSettings: "ការកំណត់ឯកជនភាព",
-    personalInfo: "ព័ត៌មានលម្អិតផ្ទាល់ខ្លួន",
-    displayName: "ឈ្មោះបង្ហាញ",
-    email: "អាសយដ្ឋានអុីម៉ែល",
-    phone: "លេខទូរស័ព្ទទំនាក់ទំនង",
-    location: "រាជធានី/ខេត្ត",
-    bio: "ជីវប្រវត្តិសង្ខេប",
-    savesBtn: "រក្សាទុកការផ្លាស់ប្តូរ",
-    activeSince: "សមាជិកតាំងពី៖ មិថុនា ២០២៤",
-    totalAds: "ការផ្សព្វផ្សាយសរុប៖ ២ ទំនិញ",
-    saving: "កំពុងរក្សាទុក...",
-    savedSuccess: "ការផ្លាស់ប្តូរត្រូវបានរក្សាទុកដោយជោគជ័យ!",
-    avatarChange: "ប្តូររូបថត",
-    adActive: "កំពុងលក់",
-    adPending: "កំពុងពិនិត្យ",
-    // Mock Listings
-    listing1: "iPad Pro 11-inch (M2 Chip, 128GB)",
-    listing2: "Mechanical Keyboard Keychron K2",
-    savedListing1: "iPhone 15 Pro Max - 256GB"
-  },
-  cn: {
-    title: "个人账户设置",
-    subtitle: "在此管理您在市场上的个人账户配置、核对名下发布的闲置物品及设置隐私偏好。",
-    tabActive: "我发布的商品",
-    tabSaved: "已收藏的宝贝",
-    tabSettings: "权限与隐私配置",
-    personalInfo: "用户基本材料",
-    displayName: "显示昵称",
-    email: "电子邮箱地址",
-    phone: "手机联系电话",
-    location: "常驻城市",
-    bio: "个人简短说明",
-    savesBtn: "保存账户修改",
-    activeSince: "注册会员年份：2024 年 6 约",
-    totalAds: "已发布宝贝：2 项",
-    saving: "正在保存更改...",
-    savedSuccess: "配置信息个人资料修改成功！",
-    avatarChange: "修改个人头像",
-    adActive: "正在出售中",
-    adPending: "待后台审核",
-    // Mock Listings
-    listing1: "iPad Pro 11 英寸 (M2 芯片, 128GB)",
-    listing2: "Keychron K2 蓝牙机械键盘",
-    savedListing1: "苹果 iPhone 15 Pro Max 256GB"
-  }
+  en: en.profile,
+  kh: kh.profile,
+  cn: zh.profile,
 };
 
 const mockAvatars = [

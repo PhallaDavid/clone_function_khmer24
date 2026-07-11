@@ -67,7 +67,7 @@ export default function Home() {
         <Carousel.Root opts={{ loop: true }} className="w-full">
           <div className="relative group/carousel">
             <Carousel.Content className="-ml-4">
-              {slides.map((slide, idx) => (
+              {slides.map((slide: any, idx) => (
                 <Carousel.Item key={idx} className="pl-4 basis-full">
                   <div className="h-[350px] sm:h-[450px] md:h-[550px] w-full rounded-lg overflow-hidden relative border border-secondary shadow-sm">
                     <img
@@ -75,6 +75,20 @@ export default function Home() {
                       alt={`Banner ${idx + 1}`}
                       className="w-full h-full object-cover"
                     />
+                    {/* Premium Dark Overlay with text and button */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent flex flex-col justify-end p-8 sm:p-12 md:p-16">
+                      <h2 className="text-white text-md sm:text-lg md:text-xl font-extrabold max-w-xl leading-tight drop-shadow-md">
+                        {slide.title[locale] || slide.title.en}
+                      </h2>
+                      <div className="mt-4 sm:mt-6">
+                        <Link
+                          href={getLocalizedLink("/products")}
+                          className="inline-flex items-center justify-center px-5 py-3 rounded-lg bg-brand-solid text-white font-extrabold text-sm hover:bg-brand-solid_hover transition-colors shadow-lg cursor-pointer"
+                        >
+                          {slide.button[locale] || slide.button.en}
+                        </Link>
+                      </div>
+                    </div>
                   </div>
                 </Carousel.Item>
               ))}

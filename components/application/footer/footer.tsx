@@ -3,117 +3,26 @@
 import React, { useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { UntitledLogo } from "@/components/foundations/logo/untitledui-logo";
+
+import en from "@/locales/en.json";
+import kh from "@/locales/kh.json";
+import zh from "@/locales/zh.json";
 
 const footerTranslations: Record<string, Record<string, string>> = {
-  en: {
-    description: "Cambodia's premier dynamic marketplace to buy and sell premium products, vehicles, properties, electronics, and jobs.",
-    newsletterTitle: "Subscribe to our newsletter",
-    newsletterSubtitle: "Get the latest updates on new listings, popular tech, and exclusive deals.",
-    emailPlaceholder: "Enter your email",
-    subscribe: "Subscribe",
-    subscribedSuccess: "Thank you for subscribing!",
-    copyright: "© 2026 Khmer24 Clone. Built with love using Untitled UI style guide.",
-    // Headers
-    categories: "Browse Categories",
-    company: "Company",
-    support: "Help & Support",
-    legal: "Legal Links",
-    // Company Links
-    aboutUs: "About Us",
-    careers: "Careers",
-    press: "Press Kit",
-    contactUs: "Contact Us",
-    // Support Links
-    helpCenter: "Help Center",
-    safetyTips: "Safety Guidelines",
-    pricing: "Pricing Plans",
-    faq: "FAQ & Support",
-    // Legal Links
-    terms: "Terms of Service",
-    privacy: "Privacy Policy",
-    cookies: "Cookie Settings",
-    avoidScams: "Avoid Scams",
-    // Categories Link terms
-    phones: "Phones & Tablets",
-    computers: "Computers",
-    cars: "Cars & Vehicles",
-    realEstate: "Real Estate",
-    services: "Professional Services"
-  },
-  kh: {
-    description: "ទីផ្សារពាណិជ្ជកម្មឈានមុខគេនៅកម្ពុជាសម្រាប់ទិញនិងលក់ទូរស័ព្ទ ឡាន ផ្ទះ គ្រឿងអេឡិចត្រូនិច និងការងារ។",
-    newsletterTitle: "ចុះឈ្មោះទទួលបានព័ត៌មានថ្មីៗ",
-    newsletterSubtitle: "ទទួលបានព័ត៌មានលម្អិតអំពីទំនិញថ្មីៗ គ្រឿងបច្ចេកវិទ្យាល្បីៗ និងការផ្តល់ជូនពិសេស។",
-    emailPlaceholder: "បញ្ចូលអុីម៉ែលរបស់អ្នក",
-    subscribe: "ចុះឈ្មោះ",
-    subscribedSuccess: "សូមអរគុណសម្រាប់ការចុះឈ្មោះរបស់អ្នក!",
-    copyright: "© ២០២៦ Khmer24 ជំនាន់ទី២។ បង្កើតឡើងដោយក្តីស្រឡាញ់ ស្របតាមរចនាបថ Untitled UI។",
-    // Headers
-    categories: "ស្វែងរកតាមចំណាត់ថ្នាក់",
-    company: "អំពីក្រុមហ៊ុន",
-    support: "ជំនួយ និងការគាំទ្រ",
-    legal: "តំណភ្ជាប់ផ្លូវច្បាប់",
-    // Company Links
-    aboutUs: "អំពីយើង",
-    careers: "ឱកាសការងារ",
-    press: "ព័ត៌មានសារព័ត៌មាន",
-    contactUs: "ទាក់ទងមកយើង",
-    // Support Links
-    helpCenter: "មជ្ឈមណ្ឌលជំនួយ",
-    safetyTips: "គោលការណ៍សុវត្ថិភាព",
-    pricing: "កញ្ចប់សេវាកម្ម",
-    faq: "សំណួរ និងចម្លើយ",
-    // Legal Links
-    terms: "លក្ខខណ្ឌប្រើប្រាស់",
-    privacy: "នយោបាយឯកជនភាព",
-    cookies: "ការកំណត់ឃុកឃី",
-    avoidScams: "គេចផុតពីការបោកប្រាស់",
-    // Categories Link terms
-    phones: "ទូរស័ព្ទ និងថេប្លេត",
-    computers: "កុំព្យូទ័រ",
-    cars: "រថយន្ត និងយានយន្ត",
-    realEstate: "អចលនទ្រព្យ",
-    services: "សេវាកម្មអាជីព"
-  },
-  cn: {
-    description: "柬埔寨领先的高端在线市场，可购买与销售手机、二手车、高端公寓、电子配饰和求职招聘。",
-    newsletterTitle: "订阅我们的时事通讯",
-    newsletterSubtitle: "获取最新发布的商品信息、爆款硬件及独家特惠优惠推送。",
-    emailPlaceholder: "输入您的邮箱地址",
-    subscribe: "立即订阅",
-    subscribedSuccess: "感谢您的订阅！",
-    copyright: "© 2026 柬埔寨Khmer24克隆版。致敬 Untitled UI 体验设计。",
-    // Headers
-    categories: "分类浏览",
-    company: "关于我们公司",
-    support: "客户帮助中心",
-    legal: "法律条款合规",
-    // Company Links
-    aboutUs: "关于我们",
-    careers: "诚聘英才",
-    press: "媒体新闻稿",
-    contactUs: "联系我们",
-    // Support Links
-    helpCenter: "帮助中心",
-    safetyTips: "安全交易指南",
-    pricing: "服务定价价格表",
-    faq: "常见问题解答",
-    // Legal Links
-    terms: "使用服务协议",
-    privacy: "隐私保护政策",
-    cookies: "Cookies个性化配置",
-    avoidScams: "防范诈骗指南",
-    // Categories Link terms
-    phones: "手机与平板配件",
-    computers: "笔记本与台式机",
-    cars: "轿车与各类载具",
-    realEstate: "房屋店铺租赁",
-    services: "专业生活服务"
-  }
+  en: en.footer,
+  kh: kh.footer,
+  cn: zh.footer,
 };
 
 export const Footer = () => {
   const pathname = usePathname();
+  
+  // Do not render footer on chat pages
+  if (pathname.endsWith("/chat") || pathname.includes("/chat/")) {
+    return null;
+  }
+
   const segments = pathname.split("/");
   const locale = ["en", "kh", "cn"].includes(segments[1]) ? (segments[1] as "en" | "kh" | "cn") : "en";
   const t = (key: string) => footerTranslations[locale]?.[key] || key;
@@ -136,14 +45,7 @@ export const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Logo and Intro col */}
           <div className="lg:col-span-2 space-y-4">
-            <div className="flex items-center gap-2">
-              <div className="size-8 rounded-lg bg-brand-solid flex items-center justify-center text-white font-extrabold text-lg shadow-sm">
-                K
-              </div>
-              <span className="text-lg font-extrabold text-primary tracking-tight">
-                Khmer24<span className="text-brand-solid">.</span>
-              </span>
-            </div>
+            <UntitledLogo className="h-8" />
             <p className="text-secondary text-sm max-w-sm leading-relaxed">
               {t("description")}
             </p>

@@ -6,55 +6,14 @@ import Link from "next/link";
 import { Breadcrumbs } from "@/components/base/breadcrumbs/breadcrumbs";
 import { cx } from "@/utils/cx";
 
+import en from "@/locales/en.json";
+import kh from "@/locales/kh.json";
+import zh from "@/locales/zh.json";
+
 const chatTranslations: Record<string, Record<string, string>> = {
-  en: {
-    title: "Messages",
-    subtitle: "Chat with buyers and sellers directly.",
-    searchPlaceholder: "Search conversations...",
-    typeMessage: "Type a message...",
-    send: "Send",
-    today: "Today",
-    yesterday: "Yesterday",
-    online: "Online",
-    offline: "Offline",
-    noConversation: "Select a conversation to start messaging",
-    emptySearch: "No conversations found",
-    you: "You",
-    listing: "Listing",
-    viewListing: "View Listing",
-  },
-  kh: {
-    title: "សារ",
-    subtitle: "ជជែកជាមួយអ្នកទិញ និងអ្នកលក់ដោយផ្ទាល់",
-    searchPlaceholder: "ស្វែងរកការសន្ទនា...",
-    typeMessage: "វាយសារ...",
-    send: "ផ្ញើ",
-    today: "ថ្ងៃនេះ",
-    yesterday: "ម្សិលមិញ",
-    online: "អনឡាញ",
-    offline: "គ្មានការតភ្ជាប់",
-    noConversation: "ជ្រើសរើសសន្ទនាដើម្បីចាប់ផ្តើម",
-    emptySearch: "រកមិនឃើញការសន្ទនា",
-    you: "អ្នក",
-    listing: "ទំនិញ",
-    viewListing: "មើលទំនិញ",
-  },
-  cn: {
-    title: "消息",
-    subtitle: "直接与买家和卖家联系。",
-    searchPlaceholder: "搜索对话...",
-    typeMessage: "输入消息...",
-    send: "发送",
-    today: "今天",
-    yesterday: "昨天",
-    online: "在线",
-    offline: "离线",
-    noConversation: "选择一个对话开始聊天",
-    emptySearch: "未找到对话",
-    you: "我",
-    listing: "商品",
-    viewListing: "查看商品",
-  },
+  en: en.chat,
+  kh: kh.chat,
+  cn: zh.chat,
 };
 
 type Message = {
@@ -166,10 +125,16 @@ export default function ChatPage() {
   const t = (key: string) => chatTranslations[locale]?.[key] || key;
 
   const [conversations, setConversations] = useState<Conversation[]>(mockConversations);
-  const [selectedId, setSelectedId] = useState<number | null>(1);
+  const [selectedId, setSelectedId] = useState<number | null>(null);
   const [search, setSearch] = useState("");
   const [input, setInput] = useState("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.innerWidth >= 1024) {
+      setSelectedId(1);
+    }
+  }, []);
 
   const selected = conversations.find((c) => c.id === selectedId) ?? null;
 
@@ -220,7 +185,10 @@ export default function ChatPage() {
         <div className="flex h-[calc(100dvh-200px)] min-h-[560px] border border-secondary rounded-lg overflow-hidden bg-primary shadow-xs">
 
           {/* ===== Left Panel: Conversation List ===== */}
-          <div className="w-full max-w-[300px] flex-shrink-0 flex flex-col border-r border-secondary">
+          <div className={cx(
+            "w-full lg:max-w-[300px] flex-shrink-0 flex flex-col border-r border-secondary",
+            selectedId !== null ? "hidden lg:flex" : "flex"
+          )}>
             {/* Header */}
             <div className="p-4 border-b border-secondary">
               <h2 className="text-sm font-extrabold text-primary mb-3">{t("title")}</h2>
@@ -283,9 +251,20 @@ export default function ChatPage() {
 
           {/* ===== Right Panel: Chat window ===== */}
           {selected ? (
-            <div className="flex-1 flex flex-col min-w-0">
+            <div className={cx(
+              "flex-1 flex flex-col min-w-0 bg-primary",
+              selectedId === null ? "hidden lg:flex" : "flex"
+            )}>
               {/* Chat Header */}
               <div className="flex items-center gap-3 px-5 py-3.5 border-b border-secondary bg-primary shrink-0">
+                <button
+                  onClick={() => setSelectedId(null)}
+                  className="lg:hidden p-1.5 rounded-lg hover:bg-secondary text-tertiary transition-colors cursor-pointer mr-1"
+                >
+                  <svg className="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                  </svg>
+                </button>
                 <div className="relative shrink-0">
                   <img src={selected.avatar} alt={selected.name} className="size-9 rounded-full border border-secondary object-cover" />
                   <span className={cx("absolute bottom-0 right-0 size-2.5 rounded-full border-2 border-primary", selected.isOnline ? "bg-success-solid" : "bg-secondary")} />

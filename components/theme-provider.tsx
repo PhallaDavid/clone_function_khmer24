@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useEffect, useState } from "react";
 import { RouterProvider } from "react-aria-components";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { LoginModal, RegisterModal } from "@/components/application/modals/auth-modals";
 import { SearchModal } from "@/components/application/modals/search-modal";
 
@@ -25,6 +25,18 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const [isRegisterOpen, setRegisterOpen] = useState(false);
     const [isSearchOpen, setSearchOpen] = useState(false);
     const router = useRouter();
+    const pathname = usePathname();
+
+    useEffect(() => {
+        const segments = pathname.split("/");
+        const currentLocale = ["en", "kh", "cn"].includes(segments[1]) ? segments[1] : "en";
+        document.documentElement.lang = currentLocale;
+        if (currentLocale === "kh") {
+            document.documentElement.classList.add("font-khmer");
+        } else {
+            document.documentElement.classList.remove("font-khmer");
+        }
+    }, [pathname]);
 
     useEffect(() => {
         const savedTheme = localStorage.getItem("theme") as Theme | null;

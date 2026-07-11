@@ -1,66 +1,12 @@
 import React from "react";
+import en from "@/locales/en.json";
+import kh from "@/locales/kh.json";
+import zh from "@/locales/zh.json";
 
 export const translations: Record<string, Record<string, string>> = {
-  en: {
-    browseCatalog: "Browse Marketplace",
-    browseSubtitle: "Explore the latest premium postings and top deals available across Cambodia.",
-    allCategories: "All Categories",
-    featuredAds: "Featured Ads",
-    featuredSubtitle: "Check out the newest listings with details, prices, and locations.",
-    viewAllAds: "View All Ads",
-    urgent: "Urgent",
-    negotiable: "Negotiable",
-    contactSeller: "Contact",
-    // Categories
-    "Phones & Tablets": "Phones & Tablets",
-    "Computers": "Computers",
-    "Cars & Vehicles": "Cars & Vehicles",
-    "Real Estate": "Real Estate",
-    "Fashion & Beauty": "Fashion & Beauty",
-    "Furniture & Decor": "Furniture & Decor",
-    "Jobs": "Jobs",
-    "Services": "Services",
-  },
-  kh: {
-    browseCatalog: "ស្វែងរកទំនិញក្នុងផ្សារ",
-    browseSubtitle: "ស្វែងរកការផ្សព្វផ្សាយថ្មីៗ និងការផ្តល់ជូនពិសេសៗនៅកម្ពុជា។",
-    allCategories: "ចំណាត់ថ្នាក់ក្រុមទាំងអស់",
-    featuredAds: "ការផ្សព្វផ្សាយពិសេស",
-    featuredSubtitle: "សូមពិនិត្យមើលការផ្សព្វផ្សាយថ្មីៗបំផុត រួមជាមួយព័ត៌មានលម្អិត តម្លៃ និងទីតាំង។",
-    viewAllAds: "មើលការផ្សាយទាំងអស់",
-    urgent: "បន្ទាន់",
-    negotiable: "ចរចាបាន",
-    contactSeller: "ទំនាក់ទំនង",
-    // Categories
-    "Phones & Tablets": "ទូរស័ព្ទ និងថេប្លេត",
-    "Computers": "កុំព្យូទ័រ",
-    "Cars & Vehicles": "រថយន្ត និងយានយន្ត",
-    "Real Estate": "អចលនព្យូហៈ",
-    "Fashion & Beauty": "ម៉ូដ និងសម្រស់",
-    "Furniture & Decor": "គ្រឿងសង្ហារឹម និងតុបតែង",
-    "Jobs": "ការងារ",
-    "Services": "សេវាកម្ម",
-  },
-  cn: {
-    browseCatalog: "浏览市场",
-    browseSubtitle: "探索柬埔寨各地最新的优质帖子和热门优惠。",
-    allCategories: "所有类别",
-    featuredAds: "特色广告",
-    featuredSubtitle: "查看包含详细信息、价格和位置的最新房源。",
-    viewAllAds: "查看所有广告",
-    urgent: "加急",
-    negotiable: "可议价",
-    contactSeller: "联系商家",
-    // Categories
-    "Phones & Tablets": "手机与平板",
-    "Computers": "电脑",
-    "Cars & Vehicles": "汽车与交通工具",
-    "Real Estate": "房地产",
-    "Fashion & Beauty": "时尚美容",
-    "Furniture & Decor": "家具与装饰",
-    "Jobs": "招聘职位",
-    "Services": "生活服务",
-  }
+  en: en.common,
+  kh: kh.common,
+  cn: zh.common,
 };
 
 export const locationNames: Record<string, Record<string, string>> = {
@@ -138,14 +84,44 @@ export const slides = [
   {
     image:
       "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?q=80&w=2070&auto=format&fit=crop",
+    title: {
+      en: "Discover Premium Electronics & Phones",
+      kh: "ស្វែងរកគ្រឿងអេឡិចត្រូនិច និងទូរស័ព្ទល្អៗ",
+      cn: "发现高端数码与精选手机"
+    },
+    button: {
+      en: "Shop Electronics",
+      kh: "ទិញគ្រឿងអេឡិចត្រូនិច",
+      cn: "选购电子数码"
+    }
   },
   {
     image:
       "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=2070&auto=format&fit=crop",
+    title: {
+      en: "Explore Modern Vehicles & Premium Cars",
+      kh: "ស្វែងរកយានយន្ត និងរថយន្តទំនើបៗ",
+      cn: "浏览现代载具与精选二手车"
+    },
+    button: {
+      en: "View Vehicles",
+      kh: "មើលរថយន្ត",
+      cn: "查看精选车辆"
+    }
   },
   {
     image:
       "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=2070&auto=format&fit=crop",
+    title: {
+      en: "Find Luxury Real Estate & Apartments",
+      kh: "ស្វែងរកអចលនទ្រព្យ និងខុនដូប្រណីតៗ",
+      cn: "寻找高端公寓与豪华住宅"
+    },
+    button: {
+      en: "Browse Condos",
+      kh: "ស្វែងរកខុនដូ",
+      cn: "浏览热销住宅"
+    }
   },
 ];
 
