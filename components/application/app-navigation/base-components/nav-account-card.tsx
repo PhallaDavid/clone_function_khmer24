@@ -2,7 +2,7 @@
 
 import type { FC, HTMLAttributes } from "react";
 import { useCallback, useEffect, useRef } from "react";
-import type { Placement } from "@react-types/overlays";
+type Placement = "bottom" | "bottom left" | "bottom right" | "bottom start" | "bottom end" | "top" | "top left" | "top right" | "top start" | "top end" | "left" | "left top" | "left bottom" | "start" | "start top" | "start bottom" | "right" | "right top" | "right bottom" | "end" | "end top" | "end bottom";
 import { BookOpen01, ChevronSelectorVertical, LogOut01, Plus, Settings01, User01 } from "@untitledui/icons";
 import { useFocusManager } from "react-aria";
 import type { DialogProps as AriaDialogProps } from "react-aria-components";

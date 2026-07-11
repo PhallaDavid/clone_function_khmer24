@@ -4,6 +4,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { RouterProvider } from "react-aria-components";
 import { useRouter } from "next/navigation";
 import { LoginModal, RegisterModal } from "@/components/application/modals/auth-modals";
+import { SearchModal } from "@/components/application/modals/search-modal";
 
 type Theme = "light" | "dark";
 
@@ -14,12 +15,15 @@ const ThemeContext = createContext<{
     setLoginOpen: (open: boolean) => void;
     isRegisterOpen: boolean;
     setRegisterOpen: (open: boolean) => void;
+    isSearchOpen: boolean;
+    setSearchOpen: (open: boolean) => void;
 } | null>(null);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const [theme, setTheme] = useState<Theme>("light");
     const [isLoginOpen, setLoginOpen] = useState(false);
     const [isRegisterOpen, setRegisterOpen] = useState(false);
+    const [isSearchOpen, setSearchOpen] = useState(false);
     const router = useRouter();
 
     useEffect(() => {
@@ -57,11 +61,12 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     };
 
     return (
-        <ThemeContext.Provider value={{ theme, toggleTheme, isLoginOpen, setLoginOpen, isRegisterOpen, setRegisterOpen }}>
+        <ThemeContext.Provider value={{ theme, toggleTheme, isLoginOpen, setLoginOpen, isRegisterOpen, setRegisterOpen, isSearchOpen, setSearchOpen }}>
             <RouterProvider navigate={router.push}>
                 {children}
                 <LoginModal isOpen={isLoginOpen} onOpenChange={setLoginOpen} onSwitchToRegister={handleSwitchToRegister} />
                 <RegisterModal isOpen={isRegisterOpen} onOpenChange={setRegisterOpen} onSwitchToLogin={handleSwitchToLogin} />
+                <SearchModal isOpen={isSearchOpen} onOpenChange={setSearchOpen} />
             </RouterProvider>
         </ThemeContext.Provider>
     );

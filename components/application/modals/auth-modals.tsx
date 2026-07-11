@@ -66,14 +66,14 @@ export function LoginModal({ isOpen, onOpenChange, onSwitchToRegister }: AuthMod
 
     return (
         <ModalOverlay isOpen={isOpen} onOpenChange={onOpenChange}>
-            <Modal className="w-full max-w-md p-6 relative">
+            <Modal className="w-full max-w-md p-6 relative rounded-lg">
                 <Dialog>
                     {({ close }) => (
                         <div className="flex flex-col">
                             {/* iPhone UI Loading Overlay */}
                             {isLoading && (
-                                <div className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-primary/70 backdrop-blur-sm rounded-xl">
-                                    <div className="flex flex-col items-center justify-center p-6 bg-secondary_alt/95 border border-secondary shadow-xl rounded-2xl w-36 h-36">
+                                <div className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-primary/70 backdrop-blur-sm rounded-lg">
+                                    <div className="flex flex-col items-center justify-center p-6 bg-secondary_alt/95 border border-secondary shadow-xl rounded-lg w-36 h-36">
                                         <IPhoneSpinner className="text-brand-solid size-9" />
                                         <span className="text-xs font-semibold text-secondary mt-4 select-none">Signing in...</span>
                                     </div>
@@ -208,14 +208,14 @@ export function RegisterModal({ isOpen, onOpenChange, onSwitchToLogin }: AuthMod
 
     return (
         <ModalOverlay isOpen={isOpen} onOpenChange={onOpenChange}>
-            <Modal className="w-full max-w-md p-6 relative">
+            <Modal className="w-full max-w-md p-6 relative rounded-lg">
                 <Dialog>
                     {({ close }) => (
                         <div className="flex flex-col">
                             {/* iPhone UI Loading Overlay */}
                             {isLoading && (
-                                <div className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-primary/70 backdrop-blur-sm rounded-xl">
-                                    <div className="flex flex-col items-center justify-center p-6 bg-secondary_alt/95 border border-secondary shadow-xl rounded-2xl w-36 h-36">
+                                <div className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-primary/70 backdrop-blur-sm rounded-lg">
+                                    <div className="flex flex-col items-center justify-center p-6 bg-secondary_alt/95 border border-secondary shadow-xl rounded-lg w-36 h-36">
                                         <IPhoneSpinner className="text-brand-solid size-9" />
                                         <span className="text-xs font-semibold text-secondary mt-4 select-none">Signing up...</span>
                                     </div>

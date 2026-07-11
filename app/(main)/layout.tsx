@@ -1,4 +1,5 @@
 import { HeaderNavigationBase } from "@/components/application/app-navigation/header-navigation";
+import { Footer } from "@/components/application/footer/footer";
 
 const navItems = [
   { label: "Home", href: "/" },
@@ -18,6 +19,7 @@ export default function MainLayout({
     <>
       <HeaderNavigationBase items={navItems} activeUrl="/" />
       <main className="flex-1 flex flex-col">{children}</main>
+      <Footer />
     </>
   );
 }

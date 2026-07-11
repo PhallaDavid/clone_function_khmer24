@@ -72,7 +72,7 @@ export default function LoginPage() {
                                 label="Email"
                                 type="email"
                                 name="email"
-                                autocomplete="email"
+                                autoComplete="email"
                                 isRequired
                                 placeholder="Enter your email"
                                 value={email}
@@ -85,7 +85,7 @@ export default function LoginPage() {
                                 label="Password"
                                 type="password"
                                 name="password"
-                                autocomplete="current-password"
+                                autoComplete="current-password"
                                 isRequired
                                 placeholder="••••••••"
                                 value={password}
@@ -146,7 +146,7 @@ export default function LoginPage() {
 
                     <div className="max-w-2xl">
                         {/* A premium preview UI block */}
-                        <div className="mb-8 p-6 rounded-2xl border border-secondary bg-primary shadow-2xl relative overflow-hidden backdrop-blur-md">
+                        <div className="mb-8 p-6 rounded-lg border border-secondary bg-primary shadow-2xl relative overflow-hidden backdrop-blur-md">
                             <div className="flex items-center justify-between pb-4 border-b border-secondary">
                                 <div className="flex items-center gap-2">
                                     <div className="size-3 rounded-full bg-fg-error-primary" />
